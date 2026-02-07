@@ -1,180 +1,1500 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
-        <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-        -->
-        <!--
-        Notice the use of %PUBLIC_URL% in the tags above.
-        It will be replaced with the URL of the `public` folder during the build.
-        Only files inside the `public` folder can be referenced from the HTML.
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pet Shop Pelo & Prosa - Cuidados premium e personalizados para cães e gatos em Salvador. Banho, tosa, farmácia veterinária 24h.">
+    <title>Pelo & Prosa Pet Shop | Banho & Tosa Premium em Salvador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #F5F0E9;
+            --bg-secondary: #FAF8F5;
+            --teal-primary: #4A919E;
+            --teal-dark: #008080;
+            --teal-light: #20B2AA;
+            --navy-dark: #001F3F;
+            --navy-medium: #0A3D62;
+            --text-dark: #333333;
+            --text-gray: #4A4A4A;
+            --white: #FFFFFF;
+            --off-white: #FFFEF9;
+        }
 
-        Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-        work correctly both with client-side routing and a non-root public URL.
-        Learn how to configure a non-root public URL by running `npm run build`.
-        -->
-        <title>Emergent | Fullstack App</title>
-        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
-        <!--
-        These two scripts have been added for the Visual Edits, please do not edit or remove them
-        -->
-        <script>
-            // Only load visual edit scripts when inside an iframe
-            if (window.self !== window.top) {
-                // Load debug monitor script
-                var debugMonitorScript = document.createElement('script');
-                debugMonitorScript.src = 'https://assets.emergent.sh/scripts/debug-monitor.js';
-                document.head.appendChild(debugMonitorScript);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-                // Configure Tailwind
-                window.tailwind = window.tailwind || {};
-                tailwind.config = {
-                    corePlugins: { preflight: false },
-                };
+        html {
+            scroll-behavior: smooth;
+        }
 
-                // Load Tailwind CDN
-                var tailwindScript = document.createElement('script');
-                tailwindScript.src = 'https://cdn.tailwindcss.com';
-                document.head.appendChild(tailwindScript);
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-dark) 100%);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+
+        .top-bar-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-bar a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .top-bar a:hover {
+            opacity: 0.8;
+        }
+
+        .top-bar i {
+            margin-right: 6px;
+        }
+
+        .top-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-links a {
+            margin-left: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--off-white);
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 80px;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--navy-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--teal-primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--teal-primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--navy-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--teal-primary) 0%, #5F9EA0 50%, var(--bg-primary) 100%);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--off-white);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--teal-dark);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--teal-dark);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal-primary), var(--teal-light));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--bg-secondary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 3px solid var(--teal-primary);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--teal-dark);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            color: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .highlight-box p {
+            font-style: italic;
+            font-size: 1.1rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        /* Mission Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .mv-card {
+            background-color: var(--off-white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--teal-primary);
+            transition: transform 0.3s;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mv-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mv-card h3 i {
+            color: var(--teal-primary);
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--bg-primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--off-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 1px solid rgba(74, 145, 158, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .service-content p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .service-tag {
+            display: inline-block;
+            background-color: rgba(74, 145, 158, 0.1);
+            color: var(--teal-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Bath Section */
+        .bath-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .bath-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 50px;
+        }
+
+        .bath-intro p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+        }
+
+        .bath-steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .bath-step {
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            color: var(--white);
+            padding: 20px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(74, 145, 158, 0.3);
+        }
+
+        .bath-step span {
+            background-color: var(--white);
+            color: var(--teal-dark);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Grooming Section */
+        .grooming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .grooming-card {
+            background-color: var(--off-white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--teal-primary);
+            transition: all 0.3s;
+        }
+
+        .grooming-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .grooming-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--navy-dark);
+        }
+
+        .grooming-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .grooming-card .price {
+            display: inline-block;
+            background-color: var(--teal-primary);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* Spa Services */
+        .spa-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .spa-item {
+            background-color: var(--off-white);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            border: 1px solid rgba(74, 145, 158, 0.1);
+        }
+
+        .spa-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--teal-primary);
+        }
+
+        .spa-item i {
+            font-size: 2.5rem;
+            color: var(--teal-primary);
+            margin-bottom: 15px;
+        }
+
+        .spa-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .spa-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Pharmacy Section */
+        .pharmacy {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .pharmacy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .pharmacy-text h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--teal-dark);
+        }
+
+        .pharmacy-text p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .pharmacy-highlight {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy-medium));
+            color: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        .pharmacy-highlight h4 {
+            color: var(--teal-light);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .pharmacy-features {
+            display: grid;
+            gap: 20px;
+        }
+
+        .pharmacy-feature {
+            background-color: var(--off-white);
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .pharmacy-feature i {
+            font-size: 2rem;
+            color: var(--teal-primary);
+            flex-shrink: 0;
+        }
+
+        .pharmacy-feature h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--navy-dark);
+        }
+
+        .pharmacy-feature p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Pet Tips Section */
+        .pet-tips {
+            background-color: var(--bg-secondary);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .tip-card {
+            background-color: var(--off-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .tip-header {
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            color: var(--white);
+            padding: 25px;
+        }
+
+        .tip-header h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .tip-header span {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .tip-content {
+            padding: 25px;
+        }
+
+        .tip-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .tip-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tip-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .tip-list li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--teal-primary);
+        }
+
+        /* Hours Section */
+        .hours {
+            background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hours h2 {
+            color: var(--white);
+            margin-bottom: 40px;
+        }
+
+        .hours h2::after {
+            background: var(--white);
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hour-item {
+            background-color: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hour-item h4 {
+            color: var(--off-white);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .hour-item p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--bg-primary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--off-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item i {
+            font-size: 3rem;
+            color: var(--teal-primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-item p {
+            color: var(--text-gray);
+        }
+
+        .contact-item a {
+            color: var(--teal-dark);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about img {
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            color: var(--teal-light);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--teal-light);
+        }
+
+        .footer-contact p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--teal-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float::before {
+            content: 'Fale Conosco';
+            position: absolute;
+            right: 70px;
+            background-color: var(--navy-dark);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
-        </script>
-    </head>
-    <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+            .about-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-        <a
-            id="emergent-badge"
-            target="_blank"
-            href="https://app.emergent.sh/?utm_source=emergent-badge"
-            style="
-                display: inline-flex !important;
-                box-sizing: border-box;
-                width: 178px;
-                height: 40px;
-                padding: 8px 12px 8px 12px;
-                align-items: center !important;
-                gap: 8px;
-                border-radius: 50px !important;
-                background: #000 !important;
-                position: fixed !important;
-                bottom: 16px;
-                right: 16px;
-                text-decoration: none;
-                font-family: -apple-system, BlinkMacSystemFont,
-                    &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell,
-                    &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;,
-                    sans-serif !important;
-                font-size: 12px !important;
-                z-index: 9999 !important;
-            "
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M15.5702 8.13142C15.7729 8.0412 16.0007 8.18878 15.9892 8.4103C15.8374 11.3192 14.0965 14.0405 11.2531 15.3065C8.40964 16.5725 5.2224 16.0453 2.95912 14.2117C2.78676 14.072 2.82955 13.804 3.03219 13.7137L4.95677 12.8568C5.04866 12.8159 5.15446 12.823 5.24204 12.8725C6.73377 13.7153 8.59176 13.8649 10.2772 13.1145C11.9626 12.3641 13.0947 10.8833 13.4665 9.21075C13.4883 9.11256 13.5539 9.02918 13.6457 8.98827L15.5702 8.13142Z" fill="white"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3066 4.74698L15.5067 5.19653C15.5759 5.35178 15.5061 5.53366 15.3508 5.60278L1.29992 11.8586C1.14467 11.9278 0.962794 11.8579 0.893675 11.7027L0.701732 11.2716L0.693457 11.2531C-1.10317 7.21778 0.711626 2.49007 4.74692 0.693443C8.78221 -1.10318 13.51 0.711693 15.3066 4.74698ZM2.82356 8.55367C2.63552 8.63739 2.41991 8.51617 2.40853 8.31065C2.28373 6.05724 3.53858 3.85787 5.72286 2.88536C7.90715 1.91286 10.3813 2.45199 11.9724 4.05256C12.1175 4.19854 12.0633 4.43988 11.8753 4.5236L2.82356 8.55367Z" fill="white"/>
-            </svg>
-            <p
-                style="
-                    color: #FFF !important;
-                    font-family: 'Inter', sans-serif !important;
-                    font-size: 13px !important;
-                    font-style: normal !important;
-                    font-weight: 600 !important;
-                    line-height: 20px !important;
-                    margin: 0 !important;
-                    white-space: nowrap !important;
-                "
-            >
-                Made with Emergent
-            </p>
-        </a>
-        <script>
-            !(function (t, e) {
-                var o, n, p, r;
-                e.__SV ||
-                    ((window.posthog = e),
-                    (e._i = []),
-                    (e.init = function (i, s, a) {
-                        function g(t, e) {
-                            var o = e.split(".");
-                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
-                                (t[e] = function () {
-                                    t.push(
-                                        [e].concat(
-                                            Array.prototype.slice.call(
-                                                arguments,
-                                                0,
-                                            ),
-                                        ),
-                                    );
-                                });
-                        }
-                        ((p = t.createElement("script")).type =
-                            "text/javascript"),
-                            (p.crossOrigin = "anonymous"),
-                            (p.async = !0),
-                            (p.src =
-                                s.api_host.replace(
-                                    ".i.posthog.com",
-                                    "-assets.i.posthog.com",
-                                ) + "/static/array.js"),
-                            (r =
-                                t.getElementsByTagName(
-                                    "script",
-                                )[0]).parentNode.insertBefore(p, r);
-                        var u = e;
-                        for (
-                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                                u.people = u.people || [],
-                                u.toString = function (t) {
-                                    var e = "posthog";
-                                    return (
-                                        "posthog" !== a && (e += "." + a),
-                                        t || (e += " (stub)"),
-                                        e
-                                    );
-                                },
-                                u.people.toString = function () {
-                                    return u.toString(1) + ".people (stub)";
-                                },
-                                o =
-                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
-                                        " ",
-                                    ),
-                                n = 0;
-                            n < o.length;
-                            n++
-                        )
-                            g(u, o[n]);
-                        e._i.push([i, s, a]);
-                    }),
-                    (e.__SV = 1));
-            })(document, window.posthog || []);
-            posthog.init("phc_xAvL2Iq4tFmANRE7kzbKwaSqp1HJjN7x48s3vr0CMjs", {
-                api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well,
-                session_recording: {
-                    recordCrossOriginIframes: true,
-                    capturePerformance: false,
-                },
+            .pharmacy-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--off-white);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .top-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-contact p {
+                justify-content: center;
+            }
+
+            .bath-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .services-grid, .grooming-grid, .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-info">
+                    <span><i class="fas fa-map-marker-alt"></i> Av. Leovigildo Filgueiras, Garcia - Salvador, Bahia</span>
+                    <a href="tel:+5571999691089"><i class="fas fa-phone"></i> (71) 99969-1089</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/peloeprosa.petcare?igsh=c3g4N255MDhrbGc2&utm_source=qr" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/5571999691089" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://customer-assets.emergentagent.com/job_a2901c4d-4470-4530-bdc6-0e5a387a515b/artifacts/apzhv6a1_Logo.jpeg" alt="Pelo & Prosa Pet Shop">
+                </div>
+                <nav>
+                    <div class="menu-toggle" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <ul id="nav-menu">
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#banho">Banho & Tosa</a></li>
+                        <li><a href="#farmacia">Farmácia</a></li>
+                        <li><a href="#dicas">Dicas Pet</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Pelo & Prosa Pet Shop</h1>
+                <p>O primeiro refúgio premium de cuidados personalizados para cães e gatos em Salvador. Onde a ciência encontra o carinho.</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/5571999691089?text=Olá! Gostaria de agendar uma experiência premium para meu pet." class="btn btn-primary">
+                        <i class="fab fa-whatsapp"></i> Agende Agora
+                    </a>
+                    <a href="#servicos" class="btn btn-secondary">Conheça Nossos Serviços</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nós</h2>
+                <p>Conheça a história e a paixão por trás do Pelo & Prosa</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://customer-assets.emergentagent.com/job_a2901c4d-4470-4530-bdc6-0e5a387a515b/artifacts/qin1rk3c_Dra%20Bruna.jpeg" alt="Dra. Bruna - Fundadora do Pelo & Prosa">
+                </div>
+                <div class="about-text">
+                    <h3>Dra. Bruna - Médica Veterinária</h3>
+                    <p>Bem-vindo ao Pet Shop Pelo & Prosa, um espaço criado com paixão, conhecimento científico e um profundo respeito pela individualidade de cada pet — o primeiro refúgio premium de cuidados personalizados para cães e gatos em Salvador.</p>
+                    <p>Fundado e liderado pela Dra. Bruna, médica veterinária com sólida trajetória na clínica de pequenos animais, o Pelo & Prosa nasce da dedicação diária à saúde e ao bem-estar de cães e gatos. Com especializações em <strong>odontologia de cães e gatos</strong>, <strong>nutrição</strong>, <strong>dermatologia</strong> e <strong>comportamento canino</strong>, traz anos de experiência em atendimentos clínicos avançados, diagnósticos precisos e tratamentos que vão além do visível.</p>
+                    <p>Aqui, cada serviço é tailor-made: desde ozonioterapia, cromoterapia, musicoterapia e aromaterapia até hidratação profunda, detox, remoção de pelos mortos, reconstrução capilar e skin care especializado. Tudo adaptado à raça, idade, pelagem, condição de saúde e personalidade do seu companheiro.</p>
+                    <div class="highlight-box">
+                        <p>"No Pet Shop Pelo & Prosa, seu pet não é apenas cuidado: é celebrado como um membro privilegiado da família."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission & Vision -->
+            <div class="mission-vision">
+                <div class="mv-card">
+                    <h3><i class="fas fa-bullseye"></i> Missão</h3>
+                    <p>Proporcionar a cada pet e sua família uma experiência única e transformadora, oferecendo serviços e cuidados 100% personalizados de acordo com as necessidades, personalidade e momento de vida de cada animal. Com muito carinho, atenção individualizada, conforto acolhedor e máxima segurança.</p>
+                </div>
+                <div class="mv-card">
+                    <h3><i class="fas fa-eye"></i> Visão</h3>
+                    <p>Ser reconhecido como o referencial absoluto em cuidados premium e personalizados para pets em Salvador e na Bahia, criando o padrão de excelência que todo tutor sonha para seu melhor amigo: um lugar onde o amor, o respeito e a individualidade de cada animal vêm em primeiro lugar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Serviços Premium</h2>
+                <p>Experiências exclusivas para o bem-estar completo do seu pet</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://customer-assets.emergentagent.com/job_a2901c4d-4470-4530-bdc6-0e5a387a515b/artifacts/1cahz55u_Foto%20Cachorro%201.jpeg" alt="Banho Premium">
+                    <div class="service-content">
+                        <h3>Banho Premium</h3>
+                        <p>Desenvolvemos um método próprio para o banho dos pets, com produtos aprovados pela ANVISA e protocolo completo de avaliação, pré-banho, banho, secagem e finalização.</p>
+                        <span class="service-tag">Personalizado</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://customer-assets.emergentagent.com/job_a2901c4d-4470-4530-bdc6-0e5a387a515b/artifacts/ywfi1fbt_Foto%20Cachorro%202.jpeg" alt="Tosa Especializada">
+                    <div class="service-content">
+                        <h3>Tosa Especializada</h3>
+                        <p>Tosa Bebê, Tosa da Raça, Tosa na Máquina, Tosa na Tesoura, Trimming e Hand Stripping. Cada técnica adaptada às características únicas do seu pet.</p>
+                        <span class="service-tag">Expertise</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://customer-assets.emergentagent.com/job_a2901c4d-4470-4530-bdc6-0e5a387a515b/artifacts/1cahz55u_Foto%20Cachorro%201.jpeg" alt="Pet Spa">
+                    <div class="service-content">
+                        <h3>Pet Spa Completo</h3>
+                        <p>Ozonioterapia, cromoterapia, musicoterapia, aromaterapia, hidratação profunda, detox e skin care. Uma experiência holística de relaxamento e cuidado.</p>
+                        <span class="service-tag">Exclusivo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spa Services Grid -->
+            <div class="spa-grid">
+                <div class="spa-item">
+                    <i class="fas fa-spa"></i>
+                    <h4>Ozonioterapia</h4>
+                    <p>Tratamento antisséptico e anti-inflamatório para pele saudável</p>
+                </div>
+                <div class="spa-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Cromoterapia</h4>
+                    <p>Terapia com cores para relaxamento e equilíbrio</p>
+                </div>
+                <div class="spa-item">
+                    <i class="fas fa-music"></i>
+                    <h4>Musicoterapia</h4>
+                    <p>Música relaxante para reduzir estresse</p>
+                </div>
+                <div class="spa-item">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Aromaterapia</h4>
+                    <p>Óleos essenciais para bem-estar</p>
+                </div>
+                <div class="spa-item">
+                    <i class="fas fa-tint"></i>
+                    <h4>Hidratação Profunda</h4>
+                    <p>Máscaras especiais para pelagem sedosa</p>
+                </div>
+                <div class="spa-item">
+                    <i class="fas fa-recycle"></i>
+                    <h4>Detox</h4>
+                    <p>Limpeza profunda com produtos naturais</p>
+                </div>
+                <div class="spa-item">
+                    <i class="fas fa-cut"></i>
+                    <h4>Remoção de Pelos Mortos</h4>
+                    <p>Carding e trimming especializados</p>
+                </div>
+                <div class="spa-item">
+                    <i class="fas fa-magic"></i>
+                    <h4>Reconstrução Capilar</h4>
+                    <p>Reparação profunda para pelos danificados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bath & Grooming Section -->
+    <section id="banho" class="bath-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nosso Banho</h2>
+                <p>Um método exclusivo desenvolvido com base em anos de experiência veterinária</p>
+            </div>
+
+            <div class="bath-intro">
+                <p>Você já deve ter passado pela experiência de buscar seu pet em um petshop e ele sair bem cheiroso, mas em pouco tempo perceber falta de escovação, pelos oleosos e mau cheiro. Isso acontece porque a maioria dos petshops não possui processos qualificados. Nós reformulamos novas etapas para entregar um banho de verdade, usando produtos aprovados pela ANVISA.</p>
+            </div>
+
+            <div class="bath-steps">
+                <div class="bath-step"><span>1</span> Avaliação</div>
+                <div class="bath-step"><span>2</span> Pré-Banho</div>
+                <div class="bath-step"><span>3</span> Banho</div>
+                <div class="bath-step"><span>4</span> Secagem</div>
+                <div class="bath-step"><span>5</span> Finalização</div>
+            </div>
+
+            <div class="section-title" style="margin-top: 60px;">
+                <h2>Nossas Tosas</h2>
+                <p>Técnicas especializadas para cada tipo de pelagem</p>
+            </div>
+
+            <div class="grooming-grid">
+                <div class="grooming-card">
+                    <h4>Tosa Bebê</h4>
+                    <p>Deixe seu pet com características de "Ursinho". Feita na tesoura, corpo mais curto e patas cheias para aspecto fofinho. Vários modelos de rostinhos disponíveis!</p>
+                </div>
+                <div class="grooming-card">
+                    <h4>Tosa da Raça</h4>
+                    <p>Preserva as características originais da pelagem de cada raça, mantendo a identidade e beleza natural do seu pet.</p>
+                </div>
+                <div class="grooming-card">
+                    <h4>Tosa na Máquina</h4>
+                    <p>Segue a direção do pelo, garantindo resultado natural. Acabamento na tesoura. Ideal para deixar seu pet fresquinho no verão.</p>
+                </div>
+                <div class="grooming-card">
+                    <h4>Tosa na Tesoura</h4>
+                    <p>Mantém o pet peludinho, tirando apenas o excesso. Você escolhe a altura desejada preservando as características do animal.</p>
+                </div>
+                <div class="grooming-card">
+                    <h4>Trimming</h4>
+                    <p>Indicado para pets com subpelo e pelagem média ou longa. Remove o excesso preservando características da raça.</p>
+                </div>
+                <div class="grooming-card">
+                    <h4>Hand Stripping</h4>
+                    <p>Para animais de pelos duros. Extrai a pelagem morta dando lugar aos pelos novos, fortes e saudáveis.</p>
+                </div>
+                <div class="grooming-card">
+                    <h4>Corte de Unha</h4>
+                    <p>Realizado com aparelho para lixar, sem deixar pontas e diminuindo chances de sangramento.</p>
+                    <span class="price">R$ 15,00</span>
+                </div>
+                <div class="grooming-card">
+                    <h4>Escovação dos Dentes</h4>
+                    <p>Com pasta especial em diversos sabores. Cada animal com sua própria escova para máxima higiene.</p>
+                    <span class="price">R$ 10,00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pharmacy Section -->
+    <section id="farmacia" class="pharmacy">
+        <div class="container">
+            <div class="section-title">
+                <h2>Farmácia Veterinária, Rações e Acessórios</h2>
+                <p>Produtos selecionados com rigor científico para a saúde do seu pet</p>
+            </div>
+
+            <div class="pharmacy-content">
+                <div class="pharmacy-text">
+                    <h3>Excelência em Produtos Veterinários</h3>
+                    <p>Nossa farmácia veterinária oferece uma seleção criteriosa de medicamentos, suplementos e produtos terapêuticos de marcas reconhecidas pela excelência e segurança — todos escolhidos com base em evidências clínicas.</p>
+                    <p>Selecionamos apenas produtos de alta qualidade, formulados para promover a saúde integral — nunca comercializamos itens que possam comprometer o equilíbrio do animal.</p>
+                    <p>Nossas rações premium e super premium são indicadas com base em princípios de nutrição veterinária avançada, garantindo energia, vitalidade e longevidade.</p>
+
+                    <div class="pharmacy-highlight">
+                        <h4><i class="fas fa-clock"></i> Atendimento 24 Horas</h4>
+                        <p>Entendemos que as emergências não respeitam horários. Oferecemos serviço exclusivo de venda de medicamentos 24 horas, mediante contato prévio e agendamento rápido.</p>
+                    </div>
+                </div>
+
+                <div class="pharmacy-features">
+                    <div class="pharmacy-feature">
+                        <i class="fas fa-pills"></i>
+                        <div>
+                            <h4>Medicamentos & Suplementos</h4>
+                            <p>Curadoria rigorosa de produtos terapêuticos seguros e eficazes.</p>
+                        </div>
+                    </div>
+                    <div class="pharmacy-feature">
+                        <i class="fas fa-bone"></i>
+                        <div>
+                            <h4>Rações Premium</h4>
+                            <p>Super premium e terapêuticas, indicadas com base em nutrição veterinária.</p>
+                        </div>
+                    </div>
+                    <div class="pharmacy-feature">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <div>
+                            <h4>Brinquedos Interativos</h4>
+                            <p>Puzzle feeders, bolas estimulantes e jogos de caça mental.</p>
+                        </div>
+                    </div>
+                    <div class="pharmacy-feature">
+                        <i class="fas fa-couch"></i>
+                        <div>
+                            <h4>Acessórios Premium</h4>
+                            <p>Caminhas ergonômicas, roupinhas funcionais e transportadoras seguras.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pet Tips Section -->
+    <section id="dicas" class="pet-tips">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dicas Pet</h2>
+                <p>Conhecimento veterinário para cuidar melhor do seu companheiro</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <h3>Saúde Bucal</h3>
+                        <span>Prevenção de doenças orais</span>
+                    </div>
+                    <div class="tip-content">
+                        <p>Cerca de 80% dos cães e gatos acima de 3 anos apresentam algum problema oral, que pode evoluir para complicações graves.</p>
+                        <ul class="tip-list">
+                            <li>Escovação diária com pasta veterinária</li>
+                            <li>Brinquedos dentais para controle de tártaro</li>
+                            <li>Limpezas profissionais regulares</li>
+                            <li>Observe gengivas sangrando ou mau hálito</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <h3>Enriquecimento Ambiental</h3>
+                        <span>Estímulos para bem-estar</span>
+                    </div>
+                    <div class="tip-content">
+                        <p>Sem estímulos adequados, o tédio pode levar a estresse e comportamentos destrutivos.</p>
+                        <ul class="tip-list">
+                            <li>Comedouros puzzle e tapetes farejadores</li>
+                            <li>Brinquedos com texturas e sons variados</li>
+                            <li>Arranhadores altos para gatos</li>
+                            <li>Interação diária com tutores</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <h3>Sinais de Estresse</h3>
+                        <span>Como identificar e ajudar</span>
+                    </div>
+                    <div class="tip-content">
+                        <p>Assim como nós, cães e gatos sentem estresse — identificar cedo faz toda a diferença.</p>
+                        <ul class="tip-list">
+                            <li>Lambedura excessiva ou tremores</li>
+                            <li>Perda de apetite ou apatia</li>
+                            <li>Esconder-se mais que o normal</li>
+                            <li>Crie rotinas estáveis e esconderijos seguros</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <h3>Alimentação Inteligente</h3>
+                        <span>Nutrição por fase de vida</span>
+                    </div>
+                    <div class="tip-content">
+                        <p>A escolha errada pode comprometer peso, pelagem, energia e longevidade do seu pet.</p>
+                        <ul class="tip-list">
+                            <li>Filhotes: alta proteína e cálcio</li>
+                            <li>Adultos: fórmulas com ômega-3</li>
+                            <li>Idosos: baixa caloria, antioxidantes</li>
+                            <li>Consulte sempre um veterinário</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours Section -->
+    <section class="hours">
+        <div class="container">
+            <div class="section-title">
+                <h2>Horários de Funcionamento</h2>
+            </div>
+            <div class="hours-grid">
+                <div class="hour-item">
+                    <h4>Segunda a Sexta</h4>
+                    <p>08:30 - 19:00</p>
+                </div>
+                <div class="hour-item">
+                    <h4>Sábado</h4>
+                    <p>09:00 - 19:00</p>
+                </div>
+                <div class="hour-item">
+                    <h4>Domingo</h4>
+                    <p>10:00 - 16:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+                <p>Estamos à disposição para guiá-lo com expertise e dedicação</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Endereço</h4>
+                    <p>Av. Leovigildo Filgueiras<br>Garcia, Salvador - Bahia</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Telefone</h4>
+                    <p><a href="tel:+5571999691089">(71) 99969-1089</a></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <h4>Instagram</h4>
+                    <p><a href="https://www.instagram.com/peloeprosa.petcare" target="_blank">@peloeprosa.petcare</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="https://customer-assets.emergentagent.com/job_a2901c4d-4470-4530-bdc6-0e5a387a515b/artifacts/apzhv6a1_Logo.jpeg" alt="Pelo & Prosa">
+                    <p>Em Salvador, o Pelo & Prosa redefine o extraordinário para quem ama de verdade. Venha descobrir o que significa cuidar com amor, ciência e distinção.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#banho">Banho & Tosa</a></li>
+                        <li><a href="#farmacia">Farmácia</a></li>
+                        <li><a href="#dicas">Dicas Pet</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Leovigildo Filgueiras, Garcia</p>
+                    <p><i class="fas fa-phone"></i> (71) 99969-1089</p>
+                    <p><i class="fas fa-clock"></i> Seg-Sex: 08:30 - 19:00</p>
+                    <p><i class="fab fa-instagram"></i> @peloeprosa.petcare</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pelo & Prosa Pet Shop. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5571999691089?text=Olá! Gostaria de mais informações sobre os serviços do Pelo %26 Prosa." class="whatsapp-float" target="_blank" aria-label="Contato WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('nav-menu').classList.remove('active');
+                }
             });
-        </script>
-    </body>
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+            }
+        });
+    </script>
+</body>
 </html>
